@@ -2,9 +2,10 @@
 import Preloader from './js/components/preloader'; // importamos la clase preloader para poder usarla en el programa.
 import Line from './js/components/line'; // importamos la clase line para poder usarla en el programa.
 
-let lines = [] // contenedor de lineas
+let lines = []; // contenedor de lineas
 let _line;
 let undoneLines = []; // contenedor de lineas eliminadas
+let brushSize = 1; // tamaño del pincel
 
 const undoBtn = document.getElementById('undo-btn'); // boton de rehacer
 const eraseBtn = document.getElementById('erase-btn'); // boton de borrar
@@ -37,7 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     startScreen.addEventListener('click', () => {
       startScreen.style.opacity = '0'; // Desvanecer
       if (startScreen.style.opacity === '0') {
-        startScreen.style.transition = 'opacity 0.5s ease'; // Transición suave
+
+        startScreen.classList.add('fade-out');
         startScreen.style.visibility = 'hidden'; // Ocultar después de desvanecer
       }
     });
@@ -48,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
     preloader.style.display = 'none'; // Oculta el preloader
   });
 
+  const brushSizeInput = document.getElementById('brush-size'); // input del tamaño del pincel
+brushSizeInput.addEventListener('input', (event) => {
+    brushSize = parseFloat(event.target.value); // Actualiza el tamaño del pincel
+    console.log("Brush size changed to:", brushSize);
+});
+
 window.setup = () => {
     createCanvas(windowWidth, windowHeight);
 };
@@ -56,8 +64,8 @@ window.mousePressed = (event) => {
     if (event.target.tagName === 'CANVAS') { 
     _line = new Line({
         stroke: color(random(255), random(255), random(255)), // color aleatorio para la linea.
-        strokeWeight: random(1, 10) // grosor aleatorio para la linea.  
-    });
+        strokeWeight: brushSize // grosor definido por el tamaño del pincel.
+        });
         lines.push(_line); 
         console.log('Línea agregada:', _line); // Depuración
     }

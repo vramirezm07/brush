@@ -5,7 +5,7 @@ body {
   margin: 0%;
   padding:0%;
   overflow: hidden;
-  cursor: url('/src/img/cursor_final.PNG');
+  cursor: url('./img/cursor_final.PNG'), auto;
 }
 
 
@@ -60,6 +60,30 @@ menu {
   }
 }
 
+@keyframes slideUpFadeOut {
+  0% {
+    transform: translateY(0); /* Posición inicial */
+    opacity: 1; /* Totalmente visible */
+  }
+  100% {
+    transform: translateY(-100%); /* Desplazarse hacia arriba */
+    opacity: 0; /* Totalmente invisible */
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#start-screen.animate-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
 #start-screen {
   position: fixed;
   top: 0;
@@ -91,8 +115,53 @@ menu {
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
+
+
 .logo {
   width: 8%;
   height: auto;
   margin-bottom: 1rem;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: rgb(232, 212, 165);
+  border: none;
+  border-radius: 10em;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+ max-width: 20px;
+  max-height: 20px;
+  background: #ff4500; /* Color del botón */
+  border-radius: 50%; /* Forma circular */
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para navegadores que no usan Webkit */
+input[type="range"]::-moz-range-thumb {
+  max-width: 40px;
+  max-height: 40px;
+  background: #ff4500;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-ms-thumb {
+  max-width: 20px;
+  max-height: 20px;
+  background: #ff4500;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Cambiar el color del track para navegadores no Webkit */
+input[type="range"]::-moz-range-track {
+  background: rgb(232, 212, 165);;
+  max-height: 8px;
+  border-radius: 5px;
 }
