@@ -30,6 +30,19 @@ redoBtn.addEventListener('click', () => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const startScreen = document.getElementById('start-screen');
+  
+    // Agregar evento de clic para ocultar la pantalla de inicio
+    startScreen.addEventListener('click', () => {
+      startScreen.style.opacity = '0'; // Desvanecer
+      if (startScreen.style.opacity === '0') {
+        startScreen.style.transition = 'opacity 0.5s ease'; // Transición suave
+        startScreen.style.visibility = 'hidden'; // Ocultar después de desvanecer
+      }
+    });
+  });
+
   window.addEventListener('load', () => {
     const preloader = document.getElementById('preloader');
     preloader.style.display = 'none'; // Oculta el preloader
