@@ -6,18 +6,20 @@ export default class Preloader {
     show () {
         gsap.to(this.preloader, {
             duration: 1, 
-            x:'0%',
+            y:'0%',
             ease: 'power2.out',
         });
     }
 
     hide () {
         gsap.to(this.preloader, {
-            duration: 1,
-            delay: .5, 
-            x:'-100%',
+            duration: 1, 
+            y:'-100%',
             display: 'none',
-            ease: 'power2.out',
+            ease: 'power2.in',
+            onComplete: () => {
+                this.preloader.style.display = 'none'; // Ocultar el preloader después de la animación
+            },
 
         });
     }
